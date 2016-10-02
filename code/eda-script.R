@@ -8,7 +8,8 @@ sink()
 
 ggplot(ad_data) + geom_histogram(aes(TV))
 ggsave("images/histogram-tv.png")
+ggsave("images/histogram-tv.pdf")
 
 ggplot(ad_data) + geom_histogram(aes(Sales))
 ggsave("images/histogram-sales.png")
-
+ggsave("images/histogram-sales.pdf")
