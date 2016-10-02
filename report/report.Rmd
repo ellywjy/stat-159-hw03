@@ -1,0 +1,23 @@
+---
+title: "Simple Regression Analysis"
+author: "Elly Wang"
+date: "10/7/2016"
+output: pdf_document
+---
+
+
+## Abstract
+
+
+## Introduction
+
+
+## Data 
+
+## Methodology
+
+
+## Results
+
+
+## Conclusions
