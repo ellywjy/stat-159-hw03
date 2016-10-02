@@ -4,8 +4,7 @@
 all: report/report.pdf data/eda-output.txt data/regression.RData
 
 data/Advertising.csv: 
-	cd  data
-	curl -O "http://www-bcf.usc.edu/~gareth/ISL/Advertising.csv"
+	curl -o data/Advertising.csv "http://www-bcf.usc.edu/~gareth/ISL/Advertising.csv"
 
 report/report.pdf: report/report.Rmd data/regression.RData images/scatterplot-tv-sales.png
 	Rscript -e "library(rmarkdown); render('report/report.Rmd','pdf_document')
