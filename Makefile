@@ -9,11 +9,11 @@ data:
 report/report.pdf: report/report.Rmd data/regression.RData images/scatterplot-tv-sales.png
 	Rscript -e "library(rmarkdown); render('report/report.Rmd','pdf_document')
 
-data/eda-output.txt: eda-script.R Advertising.csv
-	Rscript eda-script.R
+data/eda-output.txt: code/eda-script.R data/Advertising.csv
+	Rscript code/eda-script.R
 
-data/regression.RData: regression-script.R Advertising.csv
-	Rscript regression-script.R 
+data/regression.RData: code/regression-script.R data/Advertising.csv
+	Rscript code/regression-script.R 
 
 clean: 
 	rm -f *.pdf
