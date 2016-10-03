@@ -19,5 +19,11 @@ output: pdf_document
 
 ## Results
 
+```{r}
+load("../data/regression.RData")
+library(xtable)
+xtable(regression)
+
+```
 
 ## Conclusions
