@@ -19,19 +19,21 @@ output: pdf_document
 
 ## Results
 
-```{r results= 'asis'}
+```{r results= 'asis', echo =FALSE}
 load("../data/regression.RData")
 library(xtable)
-tb1 <- xtable(regression)
+tb1 <- xtable(regression, caption = 'Table 1: Information about Regression Coefficients')
 print(tb1, comment= FALSE)
 ```
 
-```{r results= 'asis'}
-sumtb <- data.frame(c("Residual standard error", "R Squared", "F-Statistics") ,c(round(reg_summary$sigma,2),round(reg_summary$r.squared,3), reg_summary$fstatistic[1]))
+```{r results= 'asis', echo =FALSE}
+
 sumtb <- data.frame(c("Residual standard error", "R Squared", "F-Statistics") ,c(reg_summary$sigma, reg_summary$r.squared, reg_summary$fstatistic[1]))
-#rownames(sumtb) <- NA
+
 colnames(sumtb) <- c("Quantity", "Value")
-tb2 <- xtable(sumtb, digits = 2)
+
+tb2 <- xtable(sumtb, digits = 2, caption = 'Table 2: Regression Quality Indicies')
+
 print(tb2, comment =FALSE,include.rownames=FALSE)
 
 ```
