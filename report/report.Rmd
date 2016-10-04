@@ -22,7 +22,8 @@ output: pdf_document
 ```{r results= 'asis'}
 load("../data/regression.RData")
 library(xtable)
-xtable(regression)
+tb1 <- xtable(regression)
+print(tb1, comment= FALSE)
 
 ```
 

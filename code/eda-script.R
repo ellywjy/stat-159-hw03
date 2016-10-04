@@ -3,7 +3,9 @@ library(ggplot2)
 ad_data <- read.csv("data/Advertising.csv")
 
 sink("data/eda-output.txt")
+cat("Summary Statistics for TV:")
 summary(ad_data$TV)
+cat("Summary Statistics for Sales:")
 summary(ad_data$Sales)
 sink()
 
