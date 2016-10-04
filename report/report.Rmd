@@ -24,6 +24,15 @@ load("../data/regression.RData")
 library(xtable)
 tb1 <- xtable(regression)
 print(tb1, comment= FALSE)
+```
+
+```{r results= 'asis'}
+sumtb <- data.frame(c("Residual standard error", "R Squared", "F-Statistics") ,c(round(reg_summary$sigma,2),round(reg_summary$r.squared,3), reg_summary$fstatistic[1]))
+sumtb <- data.frame(c("Residual standard error", "R Squared", "F-Statistics") ,c(reg_summary$sigma, reg_summary$r.squared, reg_summary$fstatistic[1]))
+#rownames(sumtb) <- NA
+colnames(sumtb) <- c("Quantity", "Value")
+tb2 <- xtable(sumtb, digits = 2)
+print(tb2, comment =FALSE,include.rownames=FALSE)
 
 ```
 
