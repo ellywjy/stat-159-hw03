@@ -3,7 +3,8 @@ library(ggplot2)
 ad_data <- read.csv("data/Advertising.csv")
 
 sink("data/eda-output.txt")
-summary(ad_data)
+summary(ad_data$TV)
+summary(ad_data$Sales)
 sink()
 
 ggplot(ad_data) + geom_histogram(aes(TV))
