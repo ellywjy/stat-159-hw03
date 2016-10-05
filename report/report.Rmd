@@ -58,8 +58,14 @@ In this table, we see that the sum of the residuals squared is `r round(reg_summ
 Another way to measure the fitness of a regression is through $R^2$ From the table, $R^2$ is 0.61, which means that 61% of the changes in sales is predicted by the changes in TV budget. This number is not considered too high, as 0.99 means close to perfect fit, but it's also not too bad for a fitness test. 
 The high F-statistic in the table also tells us that the estimated coefficents in this regression is significantly different from zero. 
 
-The scatterplot of Sales on TV with the regression lines fitted is shown below:
+The scatterplot of Sales on TV with the regression lines fitted is shown below in Figure 1.
 
 ![Scatterplot of Sales on TV](../images/scatterplot-tv-sales.png)
 
 ## Conclusions
+
+Following the simple linear regression presented in section 3.1 of **An Introduction to Statistical Learning**, we were able to reproduce the graphs, regression model, and arrive at the same results and conclusions. 
+
+From the regression, we can see that the linear model we produced using OLS had a fairly good fit. From the siginficance of the regression coefficients and the $R^2$ value, we can conclude that Sales of the particular good is positively related to the budget alloted for TV advertisment. Although we cannot conclude that its a causal relationship, we can say that these two factors are positively correlated. 
+
+Lastly, specifically in the production of this report, we utilized git, github, R, and Makefile to create a streamline workflow that is easily reproducible.
