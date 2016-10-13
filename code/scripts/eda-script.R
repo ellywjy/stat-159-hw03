@@ -28,5 +28,6 @@ ggsave("images/histogram-newspaper.png")
 ggplot(ad_data) + geom_histogram(aes(Sales))
 ggsave("images/histogram-sales.png")
 
+png(filename="images/scatterplot-matrix.png")
 pairs(ad_data[-1],pch=18)
-ggsave("images/scatterplot-matrix.png")
+dev.off()
