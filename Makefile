@@ -25,6 +25,9 @@ report/report.pdf: report/report.Rmd data/$(reg).RData images/scatterplot-tv-sal
 data/eda-output.txt: $(script)/eda-script.R data/Advertising.csv
 	Rscript $<
 
+data/correlation-matrix.RData: $(script)/eda-script.R data/Advertising.csv
+	Rscript $<
+
 # create regression model and save to RData
 data/$(reg).RData: $(script)/$(reg)-script.R data/Advertising.csv
 	Rscript $<
