@@ -4,7 +4,7 @@ residual_sum_squares <- function(x){
 
 total_sum_squares <- function(x){
 
-	sum(x$model[1])-mean(x$model[1]))
+	sum(((x$model[1])-mean(x$model[1])^2))
 
 }
 
