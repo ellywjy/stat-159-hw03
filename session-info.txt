@@ -9,7 +9,7 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  base     
 
 other attached packages:
-[1] ggplot2_2.1.0
+[1] xtable_1.8-2  ggplot2_2.1.0
 
 loaded via a namespace (and not attached):
 [1] colorspace_1.2-6 scales_0.4.0     plyr_1.8.4       gtable_0.2.0    
