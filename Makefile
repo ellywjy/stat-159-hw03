@@ -29,6 +29,10 @@ data/eda-output.txt: $(script)/eda-script.R data/Advertising.csv
 data/$(reg).RData: $(script)/$(reg)-script.R data/Advertising.csv
 	Rscript $<
 
+# create session info
+session-info.txt: $(script)/session-info-script.R
+	Rscript $<
+
 # remove report
 clean:
 	rm -f report/*.pdf
