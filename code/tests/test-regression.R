@@ -48,7 +48,7 @@ context("Test for F-stat")
 test_that("F-stat works as expected", {
   expect_length(f_statistic(reg), 1)
   expect_type(f_statistic(reg), 'double')
-  expect_equal(f_statistic(reg), regsum$fstatistic[1])
+  expect_equal(f_statistic(reg), regsum$fstatistic[[1]])
 
 })
 

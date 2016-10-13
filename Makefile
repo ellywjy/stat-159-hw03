@@ -15,7 +15,7 @@ data:
 
 # run all tests through test-that
 tests:
-	Rscript test-that.R
+	Rscript code/test-that.R
 
 # generate pdf by running Rmd
 report/report.pdf: report/report.Rmd data/$(reg).RData images/scatterplot-tv-sales.png
