@@ -4,6 +4,7 @@ ad_data <- read.csv("data/Advertising.csv")
 corr_matrix <- cor(ad_data[-1])
 lower <- corr_matrix
 lower[lower.tri(corr_matrix, diag =FALSE)] <- ""
+lower <- data.frame(lower)
 
 sink("data/eda-output.txt")
 cat("Summary Statistics for TV:\n")
