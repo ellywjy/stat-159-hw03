@@ -34,4 +34,4 @@ png(filename="images/scatterplot-matrix.png")
 pairs(ad_data[-1],pch=18)
 dev.off()
 
-save(corr_matrix, file = "data/correlation-matrix.RData")
+save(lower, file = "data/correlation-matrix.RData")
