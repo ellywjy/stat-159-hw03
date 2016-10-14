@@ -2,6 +2,9 @@
 # declare regression variable
 reg = regression
 script = code/scripts
+paper = report/report
+session = session-info
+images = $(wildcard images/*.png)
 
 # declaring phony targets
 .PHONY: all data tests clean
@@ -24,12 +27,12 @@ eda: data/eda-output.txt
 $(reg): data/$(reg).RData
 
 # phony target for report
-report: report/report.pdf
+report: $(paper).pdf
 
 
 # generate pdf by running Rmd
-report/report.pdf: report/report.Rmd data/$(reg).RData images/scatterplot-tv-sales.png
-	Rscript -e "library(rmarkdown); render('report/report.Rmd','pdf_document')"
+$(paper).pdf: $(paper).Rmd data/$(reg).RData $(images)
+	Rscript -e "library(rmarkdown); render('$(paper).Rmd','pdf_document')"
 
 # generate summary txt file from Rscript
 data/eda-output.txt: $(script)/eda-script.R data/Advertising.csv
@@ -43,7 +46,7 @@ data/$(reg).RData: $(script)/$(reg)-script.R data/Advertising.csv
 	Rscript $<
 
 # create session info
-session-info.txt: $(script)/session-info-script.R
+$(session).txt: $(script)/$(session)-script.R
 	Rscript $<
 
 # remove report
