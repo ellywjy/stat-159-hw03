@@ -1,5 +1,5 @@
 
-# Multiple Regression
+# Multiple Linear Regression
 ## Statistics 159 - Homework #3
 ##  Author: Elly Wang
 
