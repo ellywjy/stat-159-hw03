@@ -49,6 +49,7 @@ and our multiple linear regression model will be:
 
 \begin{center}
 \includegraphics[width=250pt]{../images/scatterplot-matrix.png}
+\newline Figure 1: Scatterplot Matrix for TV, Radio, Newspaper, and Sales
 \end{center}
 
 Looking at the scatterplot matrix, we roughly get a sense of how each factor is related to sales. Focusing on the last row, we see that some general upward sloping trends for Sales on TV and Sales on Radio. In contrast, the scatterplot for Sales on Newspaper do not have a definte positive trend like the previous two plots do.
@@ -63,13 +64,14 @@ library(xtable)
 tb_TV <- xtable(regressionTV, caption = 'Simple regression of sales on TV')
 print(tb_TV, comment= FALSE)
 ```
-From table 1, we can see that for every thousand dollar increase in the budget for TV, sales is predicted to increase by `r coefficients(regressionTV)[[2]] * 1000` units. Since the standard error for the estimate of $\beta_1$ is quite low and the t-statistic is quite high, we can say that our estimate is signficiantly different from zero.
-The estimate of $\beta_0$ tells that that even when there are no budget alloted to TV, we'd expect the sales to be at around `r coefficients(regressionTV)[[1]]` thousands of units. 
+From table 1, we can see that for every thousand dollar increase in the budget for TV, sales is predicted to increase by `r round(coefficients(regressionTV)[[2]],4) * 1000` units. Since the standard error for the estimate of $\beta_1$ is quite low and the t-statistic is quite high, we can say that our estimate is signficiantly different from zero.
+The estimate of $\beta_0$ tells that that even when there are no budget alloted to TV, we'd expect the sales to be at around `r round(coefficients(regressionTV)[[1]],4)` thousands of units. 
 
 The scatterplot of Sales on TV with the regression lines fitted is shown below.
 
 \begin{center}
 \includegraphics[width=250pt]{../images/scatterplot-tv-sales.png}
+\newline Figure 2: Scatterplot of Sales on TV
 \end{center}
 
 #### Sales and Radio
@@ -78,14 +80,15 @@ The scatterplot of Sales on TV with the regression lines fitted is shown below.
 tb_Radio <- xtable(regressionRadio, caption = 'Simple regression of sales on Radio')
 print(tb_Radio, comment= FALSE)
 ```
-From table 2, we can see that for every thousand dollar increase in the budget for Radio, sales is predicted to increase by `r coefficients(regressionRadio)[[2]] * 1000` units. Since the standard error for the estimate of $\beta_1$ is quite low and the t-statistic is quite high, we can say that our estimate is signficiantly different from zero.
-The estimate of $\beta_0$ tells that that even when there are no budget alloted to Radio, we'd expect the sales to be at around `r coefficients(regressionRadio)[[1]]` thousands of units. 
+From table 2, we can see that for every thousand dollar increase in the budget for Radio, sales is predicted to increase by `r round(coefficients(regressionRadio)[[2]],4) * 1000` units. Since the standard error for the estimate of $\beta_1$ is quite low and the t-statistic is quite high, we can say that our estimate is signficiantly different from zero.
+The estimate of $\beta_0$ tells that that even when there are no budget alloted to Radio, we'd expect the sales to be at around `r round(coefficients(regressionRadio)[[1]],4)` thousands of units. 
 
 
 The scatterplot of Sales on Radio with the regression lines fitted is shown below.
 
 \begin{center}
 \includegraphics[width=250pt]{../images/scatterplot-radio-sales.png}
+\newline Figure 3: Scatterplot of Sales on Radio
 \end{center}
 
 #### Sales and Newspaper
@@ -94,13 +97,14 @@ tb_Newspaper <- xtable(regressionNP, caption = 'Simple regression of sales on Ne
 print(tb_Newspaper, comment= FALSE)
 ```
 
-From table 3, we can see that for every thousand dollar increase in the budget for Newsapper, sales is predicted to increase by `r coefficients(regressionNP)[[2]] * 1000` units. Since the standard error for the estimate of $\beta_1$ fairly quite low and the t-statistic is greater than 2, we can say that our estimate is signficiantly different from zero.
-The estimate of $\beta_0$ tells that that even when there are no budget alloted to Newspaper, we'd expect the sales to be at around `r coefficients(regressionNP)[[1]]` thousands of units.
+From table 3, we can see that for every thousand dollar increase in the budget for Newsapper, sales is predicted to increase by `r round(coefficients(regressionNP)[[2]],4) * 1000` units. Since the standard error for the estimate of $\beta_1$ fairly quite low and the t-statistic is greater than 2, we can say that our estimate is signficiantly different from zero.
+The estimate of $\beta_0$ tells that that even when there are no budget alloted to Newspaper, we'd expect the sales to be at around `r round(coefficients(regressionNP)[[1]],4)` thousands of units.
 
-The scatterplot of Sales on Newspaper with the regression lines fitted is shown below. Although initially we saw no obvious linear trend in the scatter, from simple linear regression, we see that is a weak linear relationship between newsapaper budget and sales.
+The scatterplot of Sales on Newspaper with the regression lines fitted is shown below. Although initially we saw no obvious linear trend in the scatter, from simple linear regression, we see that there is a weak linear relationship between newsapaper budget and sales.
 
 \begin{center}
 \includegraphics[width=250pt]{../images/scatterplot-newspaper-sales.png}
+\newline Figure 4: Scatterplot of Sales on Newspaper
 \end{center}
 
 #### Sales and all three factors
@@ -110,18 +114,20 @@ tb_all <- xtable(regressionAll, caption = 'Multiple linear regression')
 print(tb_all, comment= FALSE)
 ```
 
-From table 4, we can see that for every thousand dollar increase in the budget for TV, while holding all other factors constant, sales is predicted to increase by `r coefficients(regressionAll)[[2]] * 1000` units. For every thousand dollar increase in the budget for Radio, while holding all other factors constant, sales is predicted to increase by `r coefficients(regressionAll)[[3]] * 1000` units. Lastly, for every thousand dollar increase in the budget for Newspaper, while holding all other factors constant, sales is predicted to increase by `r coefficients(regressionAll)[[4]] * 1000` units. 
+From table 4, we can see that both coefficients for TV and Radio have fairly low standard errors and very high t-values, so we can say that the coefficients are significantly different from zero. Thus, the interpretations are:   
 
+*  While holding all other factors constant, for every thousand dollar increase in the budget for TV, sales is predicted to increase by `r round(coefficients(regressionAll)[[2]],2) * 1000` units.   
+*  For every thousand dollar increase in the budget for Radio, while holding all other factors constant, sales is predicted to increase by `r round(coefficients(regressionAll)[[3]],2) * 1000` units. 
 
-
-Since the standard error for the estimate of $\beta_1$ is quite low and the t-statistic is quite high, we can say that our estimate is signficiantly different from zero.
-The estimate of $\beta_0$ tells that that even when there are no budget alloted to TV, we'd expect the sales to be at around `r coefficients(regressionNP)[[1]]` thousands of units. 
-
+Lastly, since we see that the t-value for the coeffiicent for newspaper is very low and the p-value is high, we conclude that the coefficient for newspaper is *not* significantly different from zero. This result seems contradicting to the results we found above in simple linear regression. However, when we look at the correlation coefficient matrix for sales and the three factors, we can see why this result is not surprising:
 
 ```{r results= 'asis', echo =FALSE}
 tb_corr <- xtable(lower, caption = 'Correlation Matrix of Advertising Data')
 print(tb_corr, comment= FALSE)
 ```
+
+From table 5, we see that Radio and Newspaper have a correlation factor of 0.35, which indicates some correlation between the two advertising methods. Since we know from the simple linear regression and multiple linear regression that changes in radio budget will affect the sales of the good, it's not surprising to see that newspaper to have some predictive power on sales when sales is regressed solely on newspaper. However, when TV and Radio are added into the regression, newspaper loses its impact on sales. Thus, from the multiple lienar regression, we see that the coefficient on newspaper is not significantly different from 0. 
+
 
 Regarding the regression quality and the fitness of our multiple linear regression model, we reference the following table (Table 6). 
 
@@ -137,15 +143,18 @@ print(tb_sum, comment =FALSE, include.rownames=FALSE)
 
 ```
 
-In this table, we see that the sum of the residuals squared is `r round(residual_std_error(regressionAll),2)`, which is a fairly low number for RSS. In doing OLS, we tried to minimize the sum of residuals squared because RSS is directly related to the RSE, which is a measure of lack of fit.  
-Another way to measure the fitness of a regression is through $R^2$ From the table, $R^2$ is 0.61, which means that 61% of the changes in sales is predicted by the changes in TV budget. This number is not considered too high, as 0.99 means close to perfect fit, but it's also not too bad for a fitness test. 
+In this table, we see that the sum of the residuals squared is `r round(sumtb[1,2],2)`, which is a fairly low number for RSS. In doing OLS, we tried to minimize the sum of residuals squared because RSS is directly related to the RSE, which is a measure of lack of fit.  
+Another way to measure the fitness of a regression is through $R^2$ From the table, $R^2$ is `r round(sumtb[2,2],4)`, which means that `r round(sumtb[2,2],4)*100`% of the changes in sales is predicted by the changes in TV budget. This number is fairly high, as 0.99 means close to perfect fit.
 The high F-statistic in the table also tells us that the estimated coefficents in this regression is significantly different from zero. 
 
-The scatterplot of Sales on TV with the regression lines fitted is shown below in Figure 1.
+The scatterplot of residual on fitted value is shown below in figure 5.
 
 \begin{center}
-\includegraphics[width=250pt]{../images/scatterplot-newspaper-sales.png}
+\includegraphics[width=250pt]{../images/residual-plot.png}
+\newline Figure 5: Scatterplot of residuals on fitted value
 \end{center}
+
+From the figure 5, we noticed the scatter of residuals on fitted sales values is not random (the red line is not straight and close to 0, indidcating some pattern in the scatter). This could indicate the possiblity that the multiple linear regression model we used in this report was not the best model in predicting sales. We will investigate and reexamine the model in a future paper. 
 
 ## Conclusions
 
