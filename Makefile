@@ -9,13 +9,23 @@ script = code/scripts
 # all
 all: report/report.pdf data/eda-output.txt data/$(reg).RData
 
-# download data file
+# download data file/phony target
 data:
 	curl -o data/Advertising.csv "http://www-bcf.usc.edu/~gareth/ISL/Advertising.csv"
 
 # run all tests through test-that
 tests:
 	Rscript code/test-that.R
+
+# phony target for eda
+eda: data/eda-output.txt
+
+# phony target for regression
+$(reg): data/$(reg).RData
+
+# phony target for report
+report: report/report.pdf
+
 
 # generate pdf by running Rmd
 report/report.pdf: report/report.Rmd data/$(reg).RData images/scatterplot-tv-sales.png
