@@ -10,8 +10,7 @@ images = $(wildcard images/*.png)
 .PHONY: all data tests clean
 
 # all
-all: report/report.pdf data/eda-output.txt data/$(reg).RData
-
+all: data tests eda $(reg) report
 # download data file/phony target
 data:
 	curl -o data/Advertising.csv "http://www-bcf.usc.edu/~gareth/ISL/Advertising.csv"
@@ -28,6 +27,8 @@ $(reg): data/$(reg).RData
 
 # phony target for report
 report: $(paper).pdf
+
+session: $(session).txt
 
 
 # generate pdf by running Rmd
