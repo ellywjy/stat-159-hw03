@@ -7,29 +7,55 @@ output: pdf_document
 
 
 ## Abstract
-In section 3.1 - *Simple Linear Regression* of the book **An Introduction to Statistical Learning**, we used the data set for advertising and performed simple linear regression of Sales on TV budget. In this report we will reproduce the graphs, regression, and analysis in a reproducible manner.  
+In sections 3.1 and 3.2 of the book **An Introduction to Statistical Learning**, we were introduced to the concepts of simple and multiple linear regression. Specifically, we used the data set for advertising and performed simple and multiple linear regressions of Sales on TV, Radio, and Newspaper budgets, individually and collectively. In this report we will reproduce the graphs, regressions, and analysis presented in the book in a reproducible manner.  
 
 ## Introduction
-The purpose of advertising for a certain good is to hopefully to increase its sales. With the technologies available today, there are many possible channels for advertisements to reach their audience. In this report, we will focus on the relationship between the budget alloted for TV advertisement and Sales of a particular good and see if we can determine whether there is a relationship and association between the two variables. 
+The purpose of advertising for a certain good is to hopefully to increase its sales. With the technologies available today, there are many possible channels for advertisements to reach their audience. In this report, we will examine the relationships between the budget alloted for TV, Radio, and Newspaper advertisements and Sales of a particular good, and see if we can determine whether there is any relationships bewtween these budgets and the sales of the product. 
 
 ## Data 
 The advertising data used in the book consists of **Sales** (in thousands of units) of a particular prouduct in 200 different markets and advertising budgets (in thousands of dollars) for the product in each of those markets. In particular, the advertising budgets were for **TV**, **Radio**, and **Newspaper**. 
 
 ## Methodology
-In this paper, we will be focusing in particular on the relationship between the Sales (in thousands of units) and TV budget (in thousands of dollars). In particular, our model for the simple linear regression will be: 
+In this paper, we will examine relationships between:
+
+* Sales (in thousands of units) and TV budget (in thousands of dollars), 
+* Sales (in thousands of units) and Radio budget (in thousands of dollars), 
+* Sales (in thousands of units) and Newspaper budget (in thousands of dollars),
+* Sales (in thousands of units) and TV, Radio, and Newspaper budgets (in thousands of dollars)
+
+ In particular, our models for the simple linear regression will be: 
 
 \begin{center}
 
  Sales  = $\beta_0$ + $\beta_1$ * TV
 
+ Sales  = $\beta_0$ + $\beta_1$ * Radio
+
+ Sales  = $\beta_0$ + $\beta_1$ * Newspaper
+
 \end{center}
 
- To esimate the coefficients for $\beta_0$ and $\beta_1$, we will perform the ordinary least squares regression in R. 
+and our multiple linear regression model will be:
+
+\begin{center}
+
+ Sales  = $\beta_0$ + $\beta_1$ * TV + $\beta_2$ * Radio + $\beta_3$ * Newspaper
+
+\end{center}
+
+ To esimate the coefficients for $\beta_0$, $\beta_1$, $\beta_2$, $\beta_3$, we will perform the ordinary least squares regression in R. 
 
 ## Results
 
-Using OLS, we get the estimates of the coefficients as shown below in Table 1.
+\begin{center}
+\includegraphics[width=250pt]{../images/scatterplot-matrix.png}
+\end{center}
 
+Looking at the scatterplot matrix, we roughly get a sense of how each factor is related to sales. Focusing on the last row, we see that some general upward sloping trends for Sales on TV and Sales on Radio. In contrast, the scatterplot for Sales on Newspaper do not have a definte positive trend like the previous two plots do.
+
+To get a better sense of how each factor relate to sales, we ran OLS regression on each pair of variables, and the estimates of the coefficients are shown below in Tables 1, 2, 3, and 4. 
+
+#### Sales and TV
 ```{r results= 'asis', echo =FALSE}
 load("../data/regression.RData")
 load("../data/correlation-matrix.RData")
@@ -37,31 +63,67 @@ library(xtable)
 tb_TV <- xtable(regressionTV, caption = 'Simple regression of sales on TV')
 print(tb_TV, comment= FALSE)
 ```
+From table 1, we can see that for every thousand dollar increase in the budget for TV, sales is predicted to increase by `r coefficients(regressionTV)[[2]] * 1000` units. Since the standard error for the estimate of $\beta_1$ is quite low and the t-statistic is quite high, we can say that our estimate is signficiantly different from zero.
+The estimate of $\beta_0$ tells that that even when there are no budget alloted to TV, we'd expect the sales to be at around `r coefficients(regressionTV)[[1]]` thousands of units. 
+
+The scatterplot of Sales on TV with the regression lines fitted is shown below.
+
+\begin{center}
+\includegraphics[width=250pt]{../images/scatterplot-tv-sales.png}
+\end{center}
+
+#### Sales and Radio
 
 ```{r results= 'asis', echo =FALSE}
 tb_Radio <- xtable(regressionRadio, caption = 'Simple regression of sales on Radio')
 print(tb_Radio, comment= FALSE)
 ```
+From table 2, we can see that for every thousand dollar increase in the budget for Radio, sales is predicted to increase by `r coefficients(regressionRadio)[[2]] * 1000` units. Since the standard error for the estimate of $\beta_1$ is quite low and the t-statistic is quite high, we can say that our estimate is signficiantly different from zero.
+The estimate of $\beta_0$ tells that that even when there are no budget alloted to Radio, we'd expect the sales to be at around `r coefficients(regressionRadio)[[1]]` thousands of units. 
 
+
+The scatterplot of Sales on Radio with the regression lines fitted is shown below.
+
+\begin{center}
+\includegraphics[width=250pt]{../images/scatterplot-radio-sales.png}
+\end{center}
+
+#### Sales and Newspaper
 ```{r results= 'asis', echo =FALSE}
-tb_Newspaper <- xtable(regressionRadio, caption = 'Simple regression of sales on Newspaper')
+tb_Newspaper <- xtable(regressionNP, caption = 'Simple regression of sales on Newspaper')
 print(tb_Newspaper, comment= FALSE)
 ```
+
+From table 3, we can see that for every thousand dollar increase in the budget for Newsapper, sales is predicted to increase by `r coefficients(regressionNP)[[2]] * 1000` units. Since the standard error for the estimate of $\beta_1$ fairly quite low and the t-statistic is greater than 2, we can say that our estimate is signficiantly different from zero.
+The estimate of $\beta_0$ tells that that even when there are no budget alloted to Newspaper, we'd expect the sales to be at around `r coefficients(regressionNP)[[1]]` thousands of units.
+
+The scatterplot of Sales on Newspaper with the regression lines fitted is shown below. Although initially we saw no obvious linear trend in the scatter, from simple linear regression, we see that is a weak linear relationship between newsapaper budget and sales.
+
+\begin{center}
+\includegraphics[width=250pt]{../images/scatterplot-newspaper-sales.png}
+\end{center}
+
+#### Sales and all three factors
 
 ```{r results= 'asis', echo =FALSE}
 tb_all <- xtable(regressionAll, caption = 'Multiple linear regression')
 print(tb_all, comment= FALSE)
 ```
 
+From table 4, we can see that for every thousand dollar increase in the budget for TV, while holding all other factors constant, sales is predicted to increase by `r coefficients(regressionAll)[[2]] * 1000` units. For every thousand dollar increase in the budget for Radio, while holding all other factors constant, sales is predicted to increase by `r coefficients(regressionAll)[[3]] * 1000` units. Lastly, for every thousand dollar increase in the budget for Newspaper, while holding all other factors constant, sales is predicted to increase by `r coefficients(regressionAll)[[4]] * 1000` units. 
+
+
+
+Since the standard error for the estimate of $\beta_1$ is quite low and the t-statistic is quite high, we can say that our estimate is signficiantly different from zero.
+The estimate of $\beta_0$ tells that that even when there are no budget alloted to TV, we'd expect the sales to be at around `r coefficients(regressionNP)[[1]]` thousands of units. 
+
+
 ```{r results= 'asis', echo =FALSE}
-tb_corr <- xtable(corr_matrix, caption = 'Correlation Matrix of Advertising Data')
+tb_corr <- xtable(lower, caption = 'Correlation Matrix of Advertising Data')
 print(tb_corr, comment= FALSE)
 ```
 
-From the table, we can see that for every thousand dollar increase in the budget for TV, sales is predicted to increase by 47.5 units. Since the standard error for the estimate of $\beta_1$ is quite low and the t-statistic is quite high, we can say that our estimate is signficiantly different from zero.
-The estimate of $\beta_0$ tells that that even when there are no budget alloted to TV, we'd expect the sales to be at around 7.03 thousands of units. 
-
-Regarding the regression quality and the fitness of our regression, we reference the following table (Table 2). 
+Regarding the regression quality and the fitness of our multiple linear regression model, we reference the following table (Table 6). 
 
 ```{r results= 'asis', echo =FALSE}
 source("../code/functions/regression-functions.R")
@@ -81,7 +143,9 @@ The high F-statistic in the table also tells us that the estimated coefficents i
 
 The scatterplot of Sales on TV with the regression lines fitted is shown below in Figure 1.
 
-![Scatterplot of Sales on TV](../images/scatterplot-tv-sales.png)
+\begin{center}
+\includegraphics[width=250pt]{../images/scatterplot-newspaper-sales.png}
+\end{center}
 
 ## Conclusions
 
