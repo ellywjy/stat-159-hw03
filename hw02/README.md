@@ -1,4 +1,6 @@
 # Statistics 159 - Homework #2
+## Name: Elly Wang
+
 
 This is the repo for HW 2, where we will use git, github, R, and Makefiles to reproduce the statistical analysis presented in Section 3.1 of "An Introduction to Statistical Learning."
 
